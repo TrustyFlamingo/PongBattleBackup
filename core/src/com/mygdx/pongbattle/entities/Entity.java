@@ -4,9 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
-/**
- * Created by Joshua on 10/11/2015.
- */
+
 public abstract class Entity {
 
     protected Rectangle bounds;
@@ -17,6 +15,7 @@ public abstract class Entity {
 
     public boolean collidingWith(Entity e) {
         return this.getBounds().overlaps(e.getBounds());
+
     }
 
     public Rectangle getBounds() {
@@ -40,7 +39,7 @@ public abstract class Entity {
     }
 
     public void setY(float y) {
-        bounds.x = y;
+        bounds.y = y;
     }
 
     public float getWidth() {

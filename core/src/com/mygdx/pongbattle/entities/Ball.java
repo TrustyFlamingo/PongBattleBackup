@@ -7,9 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.pongbattle.Game;
 
-/**
- * Created by Joshua on 10/11/2015.
- */
+
 public class Ball extends Entity {
 
     private float speed, radians;
@@ -93,29 +91,74 @@ public class Ball extends Entity {
             bounceY();
         }
     }
-
-    public void collisions() {
-
+//WALL START HERE!!!
+    public void Wcollisions(Wall w) {
+        if(collidingWith(w)) {
+            if(w.getSide() == Wall.LEFT) {
+                bounds.y = w.getY() + w.getHeight() + 1;
+                bounceY();
+            }
+            if(w.getSide() == Wall.RIGHT) {
+                bounds.y = w.getY() - getHeight() - 1;
+                bounceY();
+            }
+        }
+    }
+//WALL END HERE!
+//PADDLE START HERE!
+    public void Pcollisions(Paddle p) {
+        if(collidingWith(p)) {
+            if(p.getSide() == Paddle.LEFT) {
+                bounds.x = p.getX() + p.getWidth() + 1;
+                bounceX();
+            }
+            if(p.getSide() == Paddle.RIGHT) {
+                bounds.x = p.getX() - getWidth() - 1;
+                bounceX();
+            }
+        }
+    }
+//PADDLE END HERE!
+//ENEMY START HERE!
+    public void Ecollisions(Enemy e){
+        if(collidingWith(e)) {
+            if(e.getBounds().x > bounds.x) {//Left
+                bounds.x--;
+                bounceX();
+            }
+            else if(e.getBounds().y > bounds.y) {//Bottom
+                bounds.y--;
+                bounceY();
+            }
+            else if(e.getBounds().x + e.getWidth() < bounds.x + bounds.width) {//Right
+                bounds.x++;
+                bounceX();
+            }
+            else if(e.getBounds().y + e.getHeight() < bounds.y + bounds.height) {//Top
+                bounds.y++;
+                bounceY();
+            }
+        }
     }
 
     public void bounceX() {
         //Game.res.getSound("beep").play();
         velocity.x *= -1;
-        if(velocity.x > 0) {
+       /* if(velocity.x > 0) {
             velocity.x++;
         } else {
             velocity.x--;
-        }
+        }*/
     }
 
     public void bounceY() {
        //Game.res.getSound("plop").play();
         velocity.y *= -1;
-        if(velocity.y > 0) {
+        /*if(velocity.y > 0) {
             velocity.y++;
         } else {
             velocity.y--;
-        }
+        }*/
     }
 
     public void reset() {

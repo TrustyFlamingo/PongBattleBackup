@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.pongbattle.gamestates.*;
 
-/**
- * Created by Joshua on 10/11/2015.
- */
+
 public class GameStateManager {
 
     SpriteBatch sb;
@@ -18,11 +16,12 @@ public class GameStateManager {
 
     public final int TITLE = 0;
     public final int PLAY = 1;
+    public final int TEST = 2;
 
     public GameStateManager() {
         sb = new SpriteBatch();
         sr = new ShapeRenderer();
-        setState(PLAY);
+        setState(TEST);
     }
 
     public void setState(int newState) {
@@ -32,6 +31,9 @@ public class GameStateManager {
         }
         if(newState == PLAY) {
             state = new PlayState(this);
+        }
+        if(newState == TEST){
+            state = new TestState(this);
         }
     }
 

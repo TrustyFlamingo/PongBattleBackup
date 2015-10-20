@@ -22,8 +22,7 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 	public static Content res;
 
 
-	//private MyCamera camera;
-	//private Ball ball;
+
 	private SpriteBatch batch;//*
 	private BitmapFont font;//*
 	private GlyphLayout glyphLayout;//*
@@ -86,12 +85,10 @@ public class Game extends ApplicationAdapter implements InputProcessor{
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		Game.size.set(screenHeight, screenWidth);
+	public void resize(int screenWidth, int screenHeight) {
+		Game.size.set(screenWidth, screenHeight);
 		Game.center.set(screenWidth * .5f, screenHeight * .5f);
 		gsm.resize(Game.size);
-		//camera.resize(size, true);
-		//ball.setSpawn(new Vector2(size.x * .5f, size.y * .5f));
 	}
 	//Inputs
 	@Override
